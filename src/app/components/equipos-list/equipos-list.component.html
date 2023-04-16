@@ -1,0 +1,78 @@
+<app-header (logout)="isToken = $event"></app-header>
+<!-- <app-equipos-search
+  (searchEquiposEvent)="searchEquipos($event)"
+></app-equipos-search> -->
+<div class="mx-8">
+  <div class="mx-auto py-10">
+    <h1 class="text-3xl font-bold text-center text-white">
+      "Equipos de fútbol de la FIFA"
+    </h1>
+    <button
+      *ngIf="isToken"
+      type="button"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 my-5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+      (click)="crearEquipo()"
+    >
+      Nuevo equipo
+    </button>
+    <button
+      routerLink="/equipos/search"
+      *ngIf="isToken"
+      type="button"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 my-5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+    >
+      Busca tú equipo FIFA
+    </button>
+    <hr class="mt-10" />
+  </div>
+  <div class="container">
+    <table class="table table-auto w-1/3 bg-slate-300 border-gray-400">
+      <thead class="bg-indigo-300">
+        <tr>
+          <th class="text-center py-2 px-4">Nombre</th>
+          <th class="text-center py-2 px-4">Estadio</th>
+          <th class="text-center py-2 px-4">Sitio Web</th>
+          <th class="text-center py-2 px-4">Nacionalidad</th>
+          <th class="text-center py-2 px-4">Año de Fundación</th>
+          <th class="text-center py-2 px-4">Entrenador</th>
+          <th class="text-center py-2 px-4">Capacidad</th>
+          <th class="text-center py-2 px-4">Valor</th>
+          <th colspan="2" class="text-center py-2 px-4">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let equipo of equipos"
+          class="hover:bg-indigo-300 transition-colors duration-300"
+        >
+          <td class="text-center py-2 px-4">{{ equipo.nombre }}</td>
+          <td class="text-center py-2 px-4">{{ equipo.estadio }}</td>
+          <td class="text-center py-2 px-4">{{ equipo.sitioWeb }}</td>
+          <td class="text-center py-2 px-4">{{ equipo.nacionalidad }}</td>
+          <td class="text-center py-2 px-4">{{ equipo.fundacion }}</td>
+          <td class="text-center py-2 px-4">{{ equipo.entrenador }}</td>
+          <td class="text-center py-2 px-4">{{ equipo.capacidad }}</td>
+          <td class="text-center py-2 px-4">{{ equipo.valor }}</td>
+          <td>
+            <button
+              *ngIf="isToken"
+              class="bg-red-500 text-white py-2 px-4 m-3 rounded hover:bg-red-700"
+              (click)="eliminarEquipo(equipo.id)"
+            >
+              Eliminar
+            </button>
+          </td>
+          <td>
+            <button
+              *ngIf="isToken"
+              class="bg-blue-700 text-white py-2 px-4 m-3 rounded hover:bg-blue-700"
+              (click)="editarEquipo(equipo.id)"
+            >
+              Editar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
